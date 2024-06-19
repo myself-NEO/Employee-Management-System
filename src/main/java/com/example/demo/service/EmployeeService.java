@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UpdateEmployeeRequest;
 import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.dto.CreateEmployeeRequest;
 import com.example.demo.models.Employee;
@@ -25,5 +26,14 @@ public class EmployeeService {
 
     public List<Employee> getAllEmployee() {
         return employeeRepository.getAllEmployees();
+    }
+
+    public Employee updateEmployee(String id, UpdateEmployeeRequest request) {
+        Employee employee = request.to(id);
+        return employeeRepository.updateEmployee(employee);
+    }
+
+    public Employee deleteEmployee(String id) {
+        return employeeRepository.deleteEmployee(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.dto.UpdateEmployeeRequest;
 import com.example.demo.models.Employee;
 import org.springframework.stereotype.Repository;
 
@@ -24,5 +25,24 @@ public class EmployeeRepository {
 
     public List<Employee> getAllEmployees() {
         return employeeHashMap.values().stream().collect(Collectors.toList());
+    }
+
+    public Employee updateEmployee(Employee employee) {
+        Employee existingEmployee = employeeHashMap.get(employee.getId());
+        if(null != existingEmployee) {
+            // merge existing as well as old data.
+            employee = merge(existingEmployee, employee);
+            employeeHashMap.put(employee.getId(), employee);
+        }
+        return employee;
+    }
+
+    private Employee merge(Employee oldData, Employee newData) {
+        newData.setCreatedOn(oldData.getCreatedOn());
+        return newData;
+    }
+
+    public Employee deleteEmployee(String id) {
+        return employeeHashMap.remove(id);
     }
 }

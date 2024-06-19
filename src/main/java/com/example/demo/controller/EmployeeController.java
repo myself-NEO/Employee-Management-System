@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CreateEmployeeRequest;
+import com.example.demo.dto.UpdateEmployeeRequest;
 import com.example.demo.models.Employee;
 import com.example.demo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +43,15 @@ public class EmployeeController {
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();
     }
+
+    @PutMapping("/employee/{employeeId}")
+    public Employee updateEmployee(@PathVariable("employeeId") String id, @RequestBody UpdateEmployeeRequest request) {
+        return employeeService.updateEmployee(id, request);
+    }
+
+    @DeleteMapping("/employee")
+    public Employee deleteEmployee(@RequestParam("id") String id) {
+        return employeeService.deleteEmployee(id);
+    }
+
 }
