@@ -1,0 +1,18 @@
+package com.example.demo.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+public class Address {
+
+    private String houseNo;
+    private String streetName;
+    private String city;
+    private String state;
+    private String country;
+    private String pinCode;
+}
