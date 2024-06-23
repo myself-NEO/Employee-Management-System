@@ -7,6 +7,7 @@ import com.example.demo.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -15,16 +16,16 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository employeeRepository;
 
-    public Employee create(CreateEmployeeRequest createEmployeeRequest) {
+    public Employee create(CreateEmployeeRequest createEmployeeRequest) throws SQLException {
         Employee employee = createEmployeeRequest.to();
-        return employeeRepository.create(employee);
+        return employeeRepository.createUpgraded(employee);
     }
 
     public Employee getById(String id) {
         return employeeRepository.getById(id);
     }
 
-    public List<Employee> getAllEmployee() {
+    public List<Employee> getAllEmployee() throws SQLException {
         return employeeRepository.getAllEmployees();
     }
 

@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @PostMapping("/employee")
-    public Employee createEmployee(@RequestBody @Valid CreateEmployeeRequest employeeRequest) {
+    public Employee createEmployee(@RequestBody @Valid CreateEmployeeRequest employeeRequest) throws SQLException {
         return employeeService.create(employeeRequest);
     }
 
@@ -41,7 +42,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/allEmployees")
-    public List<Employee> getAllEmployee() {
+    public List<Employee> getAllEmployee() throws SQLException {
         return employeeService.getAllEmployee();
     }
 
