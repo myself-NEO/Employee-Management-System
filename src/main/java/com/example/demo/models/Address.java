@@ -1,11 +1,11 @@
 package com.example.demo.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
+@NoArgsConstructor
 @AllArgsConstructor
 public class Address {
 
@@ -15,4 +15,9 @@ public class Address {
     private String state;
     private String country;
     private String pinCode;
+
+    public static Address fromString(String address) {
+        // ..
+        return new Address();
+    }
 }
